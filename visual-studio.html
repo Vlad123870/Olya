@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Developer Toolkit — Git Bash, Visual Studio и Visual Studio Code для Python и C++.">
+  <title>Developer Toolkit — Visual Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__content">
+        <div class="brand">
+          <div class="brand__icon">$</div>
+          <div>
+            <span class="eyebrow">DEVELOPER TOOLKIT</span>
+            <h1>Visual Studio</h1>
+          </div>
+        </div>
+        <p class="hero__text">Подробное руководство по Visual Studio для C/C++ — от создания первого проекта до сборки и отладки.</p>
+        <nav class="section-nav" aria-label="Разделы справочника">
+  <a class="section-nav__item" href="index.html">Git Bash</a>
+  <a class="section-nav__item" href="visual-studio.html">Visual Studio</a>
+  <a class="section-nav__item" href="vscode.html">Visual Studio Code</a>
+  <a class="section-nav__item" href="mathematical-analysis.html">Матанализ</a>
+  <a class="section-nav__item" href="linear-algebra.html">ЛинАл + аналит. геометрия</a>
+</nav>
+        
+      </div>
+    </header>
+
+    <main class="container">
+<section id="visualstudioView" class="view" aria-label="Полная инструкция по Visual Studio">
+  <div class="guide-hero">
+    <div>
+      <span class="eyebrow">C / C++ · С НУЛЯ</span>
+      <h2>Visual Studio: инструкция от установки до отладки</h2>
+      <p>Практический маршрут для новичка: установить инструменты C/C++, создать первый проект, разобраться в окнах IDE, собрать и запустить программу, научиться пользоваться Debugger и понимать ошибки компиляции.</p>
+    </div>
+    <div class="guide-hero__badge">VS</div>
+  </div>
+
+  <div class="guide-intro">
+    <div class="info-note">
+      <b>Как проходить инструкцию:</b> иди сверху вниз и повторяй действия прямо в Visual Studio. В конце у тебя будет готовый консольный проект C++, ты научишься ставить breakpoint и сможешь самостоятельно находить простые ошибки.
+    </div>
+    <div class="guide-toc">
+      <a href="#vs-install">1. Установка</a>
+      <a href="#vs-project">2. Первый проект</a>
+      <a href="#vs-interface">3. Интерфейс</a>
+      <a href="#vs-files">4. Файлы и структура</a>
+      <a href="#vs-build">5. Сборка</a>
+      <a href="#vs-run">6. Запуск</a>
+      <a href="#vs-debug">7. Debugger</a>
+      <a href="#vs-errors">8. Ошибки</a>
+      <a href="#vs-settings">9. Настройки</a>
+      <a href="#vs-workflow">10. Ежедневный workflow</a>
+      <a href="#vs-next">11. Что изучать дальше</a>
+      <a href="#vs-hotkeys">12. Горячие клавиши</a>
+    </div>
+  </div>
+
+  <div class="guide-grid guide-grid--full">
+    <article id="vs-install" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">01</div>
+      <div>
+        <span class="guide-label">ПОДГОТОВКА</span>
+        <h3>Установка Visual Studio для C/C++</h3>
+        <p>Для обычных учебных программ на Windows тебе нужен Visual Studio и набор инструментов C/C++. В Visual Studio Installer выбери workload <b>Desktop development with C++</b>. Microsoft указывает его как основной набор для разработки настольных C/C++ приложений и MSVC toolchain.</p>
+        <ol class="guide-steps">
+          <li>Скачай Visual Studio с официального сайта Microsoft.</li>
+          <li>Запусти <b>Visual Studio Installer</b>.</li>
+          <li>На вкладке <b>Workloads</b> выбери <b>Desktop development with C++</b>.</li>
+          <li>Проверь, что устанавливаются инструменты C++, MSVC и Windows SDK. Основные компоненты этого workload входят автоматически; дополнительные компоненты можно выбрать в правой части окна.</li>
+          <li>Нажми <b>Install</b> или <b>Modify</b> и дождись завершения.</li>
+        </ol>
+        <div class="guide-compare">
+          <div><b>Visual Studio</b><span>Полноценная IDE: проекты, MSVC, отладчик, Solution Explorer, профили сборки.</span></div>
+          <div><b>VS Code</b><span>Лёгкий редактор, который обычно требует отдельной настройки компилятора и инструментов.</span></div>
+        </div>
+        <div class="info-note"><b>Важно:</b> если Visual Studio уже установлена, не переустанавливай её целиком. Открой Visual Studio Installer → <b>Modify</b> и добавь нужный workload.</div>
+      </div>
+    </article>
+
+    <article id="vs-project" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">02</div>
+      <div>
+        <span class="guide-label">ПЕРВЫЙ ШАГ</span>
+        <h3>Создаём первый проект C++</h3>
+        <p>В Visual Studio основной единицей работы является <b>проект</b>. Проект содержит исходники, настройки компиляции и сведения о том, как из исходников получить исполняемый файл.</p>
+        <ol class="guide-steps">
+          <li>Открой Visual Studio.</li>
+          <li>На стартовом экране нажми <b>Create a new project</b>.</li>
+          <li>В поиске шаблонов введи <b>Console</b>.</li>
+          <li>Выбери консольный проект для C++.</li>
+          <li>Укажи <b>Project name</b> — например <code>FirstProject</code>.</li>
+          <li>Выбери <b>Location</b> — место, где будут храниться файлы проекта.</li>
+          <li>Нажми <b>Create</b>. Visual Studio создаст проект и добавит его в решение.</li>
+        </ol>
+        <div class="concept-grid">
+          <div><span class="concept-icon">S</span><b>Solution</b><p>Контейнер верхнего уровня. В нём может находиться один или несколько проектов.</p></div>
+          <div><span class="concept-icon">P</span><b>Project</b><p>Конкретная программа или библиотека со своими исходниками и настройками.</p></div>
+          <div><span class="concept-icon">CPP</span><b>.cpp</b><p>Файл с исходным кодом C++.</p></div>
+          <div><span class="concept-icon">H</span><b>.h</b><p>Заголовочный файл с объявлениями, типами и интерфейсами.</p></div>
+        </div>
+        <div class="info-note"><b>Новичку достаточно запомнить:</b> Solution → Project → Source Files → <code>.cpp</code>. Это не «обязательная лестница» для каждого проекта, но хорошая базовая модель для понимания структуры.</div>
+      </div>
+    </article>
+
+    <article id="vs-interface" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">03</div>
+      <div>
+        <span class="guide-label">ОРИЕНТАЦИЯ</span>
+        <h3>Разбираемся в интерфейсе Visual Studio</h3>
+        <p>На первых занятиях важно не пытаться запомнить все окна. Тебе постоянно будут нужны примерно семь элементов.</p>
+        <div class="interface-grid">
+          <div><b>Solution Explorer</b><span>Файлы, проекты, классы и структура решения.</span></div>
+          <div><b>Editor</b><span>Главное окно, где ты пишешь код.</span></div>
+          <div><b>Toolbar</b><span>Кнопки запуска, выбора конфигурации и платформы.</span></div>
+          <div><b>Error List</b><span>Ошибки и предупреждения, найденные при сборке или анализе кода.</span></div>
+          <div><b>Output</b><span>Подробный лог сборки и действий IDE.</span></div>
+          <div><b>Terminal</b><span>Командная строка внутри Visual Studio.</span></div>
+          <div><b>Properties</b><span>Свойства выбранного проекта, файла или элемента.</span></div>
+          <div><b>Debug windows</b><span>Locals, Watch, Call Stack и другие окна во время отладки.</span></div>
+        </div>
+        <div class="guide-two-columns">
+          <div>
+            <h4>Если окно исчезло</h4>
+            <p>Не пугайся. Большинство панелей можно снова открыть через меню <b>View</b>. Например, <b>View → Solution Explorer</b>. Microsoft также указывает этот путь в документации по C++ debugging.</p>
+          </div>
+          <div>
+            <h4>Главный принцип</h4>
+            <p>Не пытайся искать ошибку только глазами в редакторе. Смотри одновременно на код, Error List и Output: они отвечают на разные вопросы.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="vs-files" class="guide-card guide-section-card">
+      <div class="guide-card__number">04</div>
+      <span class="guide-label">ФАЙЛЫ</span>
+      <h3>Как добавлять и организовывать код</h3>
+      <p>В <b>Solution Explorer</b> щёлкни правой кнопкой по проекту или нужной папке и используй <b>Add</b> для создания нового элемента.</p>
+      <div class="flow-list">
+        <div><span>01</span><b>Source Files</b><small>сюда обычно помещают .cpp</small></div>
+        <div><span>02</span><b>Header Files</b><small>сюда удобно складывать .h</small></div>
+        <div><span>03</span><b>Add → New Item</b><small>создание нового файла через IDE</small></div>
+        <div><span>04</span><b>Right Click</b><small>переименование, удаление, свойства</small></div>
+      </div>
+      <div class="info-note">Не удаляй файлы проекта прямо из проводника Windows, если не понимаешь, как это повлияет на проект. Для новичка безопаснее управлять структурой через Solution Explorer.</div>
+    </article>
+
+    <article id="vs-build" class="guide-card guide-section-card">
+      <div class="guide-card__number">05</div>
+      <span class="guide-label">КОМПИЛЯЦИЯ</span>
+      <h3>Что происходит после нажатия «Build»</h3>
+      <p>Очень важно разделять <b>сборку</b> и <b>запуск</b>. Сначала Visual Studio должна успешно собрать проект, а уже потом можно запускать получившийся исполняемый файл.</p>
+      <div class="pipeline">
+        <div><strong>Код</strong><span>.cpp / .h</span></div>
+        <b>→</b>
+        <div><strong>Компиляция</strong><span>проверка и преобразование исходников</span></div>
+        <b>→</b>
+        <div><strong>Линковка</strong><span>сборка программы из объектных файлов</span></div>
+        <b>→</b>
+        <div><strong>EXE</strong><span>готовая программа</span></div>
+      </div>
+      <p class="guide-muted"><b>Ctrl + Shift + B</b> — Build Solution. После сборки смотри в <b>Error List</b> и <b>Output</b>. Эти сочетания клавиш и команда сборки документированы Microsoft.</p>
+      <div class="info-note"><b>Build ≠ Run.</b> Сборка отвечает на вопрос «можно ли из этого кода получить программу?», запуск — «что произойдёт, когда программа начнёт выполняться?».</div>
+    </article>
+
+    <article id="vs-run" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">06</div>
+      <div>
+        <span class="guide-label">ПЕРВЫЙ ЗАПУСК</span>
+        <h3>Запускаем программу</h3>
+        <div class="launch-grid">
+          <div class="launch-card launch-card--primary"><kbd>F5</kbd><b>Start Debugging</b><p>Запускает программу под отладчиком. Если есть breakpoint, выполнение остановится на нём.</p></div>
+          <div class="launch-card"><kbd>Ctrl + F5</kbd><b>Start Without Debugging</b><p>Запускает программу без обычного режима отладки.</p></div>
+          <div class="launch-card"><kbd>Shift + F5</kbd><b>Stop Debugging</b><p>Останавливает текущую сессию отладки.</p></div>
+          <div class="launch-card"><kbd>Ctrl + Shift + F5</kbd><b>Restart</b><p>Перезапускает текущую сессию отладки.</p></div>
+        </div>
+        <div class="guide-steps-row">
+          <div><span>1</span><b>Напиши код</b><p>Например, простой <code>main()</code>.</p></div>
+          <div><span>2</span><b>Сохрани</b><p><kbd>Ctrl + S</kbd>.</p></div>
+          <div><span>3</span><b>Собери</b><p><kbd>Ctrl + Shift + B</kbd>.</p></div>
+          <div><span>4</span><b>Запусти</b><p><kbd>F5</kbd> или <kbd>Ctrl + F5</kbd>.</p></div>
+        </div>
+        <div class="code-demo"><span class="code-demo__title">Минимальная программа</span><pre><code>#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "Hello, World!\n";
+    return 0;
+}</code></pre></div>
+      </div>
+    </article>
+
+    <article id="vs-debug" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">07</div>
+      <div>
+        <span class="guide-label">ОТЛАДКА</span>
+        <h3>Debugger — как понять, что делает программа</h3>
+        <p>Отладчик позволяет не гадать по коду, а буквально остановить выполнение и посмотреть состояние программы. Microsoft рекомендует для C++ начать с breakpoint, затем наблюдать переменные и пошагово проходить выполнение.</p>
+        <div class="debug-timeline">
+          <div><span>1</span><b>Поставь breakpoint</b><p>Поставь курсор на нужную строку и нажми <kbd>F9</kbd>. Обычно слева появится маркер точки останова.</p></div>
+          <div><span>2</span><b>Запусти F5</b><p>Программа пойдёт обычным ходом и остановится в месте breakpoint.</p></div>
+          <div><span>3</span><b>Посмотри переменные</b><p>Используй <b>Locals</b>, <b>Watch</b> и подсказки рядом с переменными.</p></div>
+          <div><span>4</span><b>Шагай по коду</b><p><kbd>F10</kbd> — следующая строка; <kbd>F11</kbd> — зайти внутрь функции; <kbd>Shift + F11</kbd> — выйти.</p></div>
+          <div><span>5</span><b>Продолжи</b><p><kbd>F5</kbd> снова продолжит выполнение до следующей остановки.</p></div>
+        </div>
+        <div class="guide-two-columns">
+          <div>
+            <h4>F10 vs F11</h4>
+            <p><b>F10</b> удобно, когда ты хочешь пройти текущую строку, не заходя внутрь вызываемой функции. <b>F11</b> — когда как раз нужно посмотреть, что происходит внутри функции. Эти команды относятся к стандартному набору Debug shortcuts Visual Studio.</p>
+          </div>
+          <div>
+            <h4>Watch</h4>
+            <p>В Watch можно добавить выражения и наблюдать их значения во время остановки программы. Для быстрого просмотра одной переменной есть Quick Watch.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="vs-errors" class="guide-card guide-section-card">
+      <div class="guide-card__number">08</div>
+      <span class="guide-label">ДИАГНОСТИКА</span>
+      <h3>Как читать ошибки</h3>
+      <div class="error-table">
+        <div class="error-row error-row--head"><span>Что видно</span><span>Что это значит</span><span>Что делать</span></div>
+        <div class="error-row"><span>Красная ошибка в Error List</span><span>Компилятор/система сборки не смогла успешно обработать код.</span><span>Исправляй сначала самую раннюю ошибку.</span></div>
+        <div class="error-row"><span>Много ошибок после одной строки</span><span>Одна синтаксическая ошибка могла вызвать каскад сообщений.</span><span>Исправь первую по времени/позиции ошибку и пересобери.</span></div>
+        <div class="error-row"><span>Программа не запускается</span><span>Проект мог не собраться или выбран не тот startup project.</span><span>Проверь Build → Error List и настройки запуска.</span></div>
+        <div class="error-row"><span>Breakpoint не срабатывает</span><span>Код может не выполняться, сборка может быть неактуальной или точка находится в другом пути выполнения.</span><span>Поставь breakpoint в гарантированно выполняемую строку и запусти через F5.</span></div>
+        <div class="error-row"><span>Окно консоли сразу закрывается</span><span>Программа завершилась сразу после выполнения.</span><span>Для учебного запуска используй Ctrl + F5; при необходимости изучи настройки проекта или запуска.</span></div>
+      </div>
+      <div class="info-note"><b>Золотое правило:</b> не исправляй десять сообщений одновременно. Найди первую содержательную ошибку, исправь её, собери проект заново и только потом смотри, что осталось.</div>
+    </article>
+
+    <article id="vs-settings" class="guide-card guide-section-card">
+      <div class="guide-card__number">09</div>
+      <span class="guide-label">НАСТРОЙКА</span>
+      <h3>Что стоит настроить в начале</h3>
+      <ul class="feature-list feature-list--large">
+        <li><b>Solution Explorer</b> — держи его открытым: это навигатор по проекту.</li>
+        <li><b>Error List</b> — полезно держать доступным, чтобы сразу видеть ошибки.</li>
+        <li><b>Output</b> — открывай, когда обычного сообщения об ошибке недостаточно.</li>
+        <li><b>Formatting</b> — привыкай к автоматическому форматированию и одинаковому стилю кода.</li>
+        <li><b>Configuration</b> — на панели запуска проверяй активную конфигурацию, обычно <b>Debug</b> или <b>Release</b>.</li>
+        <li><b>Platform</b> — обращай внимание на выбранную платформу, например x64, особенно когда проект использует внешние библиотеки.</li>
+      </ul>
+      <div class="settings-card"><b>Debug</b><span>Для разработки и отладки. Здесь удобнее ставить breakpoint и исследовать состояние программы.</span></div>
+      <div class="settings-card"><b>Release</b><span>Конфигурация для финальной сборки. На этапе обучения большую часть времени можно проводить в Debug.</span></div>
+    </article>
+
+    <article id="vs-workflow" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">10</div>
+      <div>
+        <span class="guide-label">ЕЖЕДНЕВНАЯ РАБОТА</span>
+        <h3>Нормальный workflow студента</h3>
+        <div class="workflow-grid">
+          <div><strong>01</strong><b>Открыть solution</b><span>Открой проект, а не случайный .cpp-файл.</span></div>
+          <div><strong>02</strong><b>Понять задачу</b><span>Перед кодом сформулируй входные данные, выходные данные и алгоритм.</span></div>
+          <div><strong>03</strong><b>Написать маленький кусок</b><span>Не пиши всю программу за раз.</span></div>
+          <div><strong>04</strong><b>Build</b><span>Часто собирай проект и быстро обнаруживай синтаксические ошибки.</span></div>
+          <div><strong>05</strong><b>Run</b><span>Проверяй программу на простых тестах.</span></div>
+          <div><strong>06</strong><b>Debug</b><span>При странном результате ставь breakpoint и смотри значения.</span></div>
+          <div><strong>07</strong><b>Refactor</b><span>После решения упрощай код и исправляй очевидные повторы.</span></div>
+          <div><strong>08</strong><b>Сохранить результат</b><span>Сохрани проект и при работе с Git сделай осмысленный commit.</span></div>
+        </div>
+        <div class="info-note"><b>Смысл IDE:</b> Visual Studio нужна не для того, чтобы нажимать много кнопок. Её задача — сократить цикл «написал → собрал → запустил → нашёл ошибку → исправил → проверил».</div>
+      </div>
+    </article>
+
+    <article id="vs-next" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">11</div>
+      <div>
+        <span class="guide-label">СЛЕДУЮЩИЙ УРОВЕНЬ</span>
+        <h3>Что изучать после этой инструкции</h3>
+        <div class="roadmap">
+          <div><span>01</span><b>C/C++ basics</b><small>типы, условия, циклы, функции, массивы, строки</small></div>
+          <div><span>02</span><b>Debugger</b><small>breakpoints, Watch, Call Stack, исключения</small></div>
+          <div><span>03</span><b>Git</b><small>commit, branch, merge, pull, push</small></div>
+          <div><span>04</span><b>CMake</b><small>отдельный способ описывать сборку и структуру C/C++ проектов</small></div>
+          <div><span>05</span><b>Libraries</b><small>подключение сторонних библиотек и работа с зависимостями</small></div>
+          <div><span>06</span><b>Tests</b><small>автоматическая проверка отдельных частей программы</small></div>
+        </div>
+        <p>Visual Studio имеет встроенную поддержку CMake-проектов: IDE может открывать <code>CMakeLists.txt</code>, обеспечивать IntelliSense и выполнять конфигурацию/сборку CMake. Для базовых учебных проектов это не обязательно, но дальше это важный инструмент для C/C++.</p>
+      </div>
+    </article>
+
+    <article id="vs-hotkeys" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">12</div>
+      <div>
+        <span class="guide-label">ШПАРГАЛКА</span>
+        <h3>Горячие клавиши, которые реально нужны</h3>
+        <div class="hotkeys hotkeys--large">
+          <div><kbd>Ctrl + S</kbd><span>Сохранить</span></div>
+          <div><kbd>Ctrl + F</kbd><span>Поиск</span></div>
+          <div><kbd>Ctrl + Shift + B</kbd><span>Собрать решение</span></div>
+          <div><kbd>F5</kbd><span>Запуск с отладкой</span></div>
+          <div><kbd>Ctrl + F5</kbd><span>Запуск без отладки</span></div>
+          <div><kbd>Shift + F5</kbd><span>Остановить отладку</span></div>
+          <div><kbd>Ctrl + Shift + F5</kbd><span>Перезапустить</span></div>
+          <div><kbd>F9</kbd><span>Переключить breakpoint</span></div>
+          <div><kbd>F10</kbd><span>Шаг с обходом</span></div>
+          <div><kbd>F11</kbd><span>Шаг внутрь</span></div>
+          <div><kbd>Shift + F11</kbd><span>Выйти из функции</span></div>
+          <div><kbd>Ctrl + F10</kbd><span>Запуск до курсора</span></div>
+          <div><kbd>Shift + F12</kbd><span>Найти все ссылки</span></div>
+          <div><kbd>Ctrl + Alt + B</kbd><span>Открыть Breakpoints</span></div>
+          <div><kbd>Ctrl + Alt + C</kbd><span>Call Stack</span></div>
+          <div><kbd>Shift + F9</kbd><span>Quick Watch</span></div>
+        </div>
+        <p class="guide-source">Сочетания клавиш сверены с актуальной документацией Microsoft Visual Studio.</p>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+    </main>
+
+    <footer class="footer">
+      <span>Developer Toolkit</span>
+      <span>HTML · CSS · JavaScript</span>
+    </footer>
+  </div>
+
+</body>
+</html>

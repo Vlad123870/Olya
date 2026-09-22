@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Developer Toolkit — Git Bash, Visual Studio и Visual Studio Code для Python и C++.">
+  <title>Developer Toolkit — Git Bash</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__content">
+        <div class="brand">
+          <div class="brand__icon">$</div>
+          <div>
+            <span class="eyebrow">DEVELOPER TOOLKIT</span>
+            <h1>Git Bash Cheatsheet</h1>
+          </div>
+        </div>
+        <p class="hero__text">Команды Git Bash и Git в одном месте. Поиск, категории, примеры и быстрый доступ к нужным командам.</p>
+        <nav class="section-nav" aria-label="Разделы справочника">
+  <a class="section-nav__item" href="index.html">Git Bash</a>
+  <a class="section-nav__item" href="visual-studio.html">Visual Studio</a>
+  <a class="section-nav__item" href="vscode.html">Visual Studio Code</a>
+  <a class="section-nav__item" href="mathematical-analysis.html">Матанализ</a>
+  <a class="section-nav__item" href="linear-algebra.html">ЛинАл + аналит. геометрия</a>
+</nav>
+        <div class="search" id="gitSearch">
+          <span class="search__icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Поиск по командам, описаниям и примерам..." autocomplete="off">
+          <button id="clearSearch" class="search__clear" type="button" aria-label="Очистить поиск">×</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+<section id="gitbashView" class="view is-active" aria-label="Справочник Git Bash">
+        <div class="toolbar">
+          <div id="categoryTabs" class="tabs" role="tablist" aria-label="Категории команд"></div>
+          <span id="commandCount" class="count"></span>
+        </div>
+        <section id="commandsGrid" class="commands-grid" aria-live="polite"></section>
+        <div id="emptyState" class="empty hidden">
+          <div class="empty__icon">⌁</div>
+          <h2>Ничего не найдено</h2>
+          <p>Попробуйте изменить поисковый запрос или выбрать другую категорию.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Developer Toolkit</span>
+      <span>HTML · CSS · JavaScript</span>
+    </footer>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

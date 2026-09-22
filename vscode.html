@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Developer Toolkit — Git Bash, Visual Studio и Visual Studio Code для Python и C++.">
+  <title>Developer Toolkit — Visual Studio Code</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__content">
+        <div class="brand">
+          <div class="brand__icon">$</div>
+          <div>
+            <span class="eyebrow">DEVELOPER TOOLKIT</span>
+            <h1>Visual Studio Code</h1>
+          </div>
+        </div>
+        <p class="hero__text">Подробный практический гайд по VS Code для Python и C++: расширения, запуск, терминал, окружения, компиляция и отладка.</p>
+        <nav class="section-nav" aria-label="Разделы справочника">
+  <a class="section-nav__item" href="index.html">Git Bash</a>
+  <a class="section-nav__item" href="visual-studio.html">Visual Studio</a>
+  <a class="section-nav__item" href="vscode.html">Visual Studio Code</a>
+  <a class="section-nav__item" href="mathematical-analysis.html">Матанализ</a>
+  <a class="section-nav__item" href="linear-algebra.html">ЛинАл + аналит. геометрия</a>
+</nav>
+        
+      </div>
+    </header>
+
+    <main class="container">
+<section id="vscodeView" class="view" aria-label="Подробная инструкция по Visual Studio Code">
+  <div class="guide-hero vscode-hero">
+    <div>
+      <span class="eyebrow">PYTHON · C++ · С НУЛЯ</span>
+      <h2>Visual Studio Code: подробный практический гайд</h2>
+      <p>Большая пошаговая инструкция по тому, как организовать работу в VS Code: открыть проект, разобраться в интерфейсе, установить нужные расширения, настроить Python, работать с виртуальными окружениями и пакетами, а затем при необходимости подключить C++, компилятор и отладчик.</p>
+    </div>
+    <div class="guide-hero__badge">VS<br>CODE</div>
+  </div>
+
+  <div class="guide-intro">
+    <div class="info-note">
+      <b>Главная идея:</b> Visual Studio Code — это редактор, вокруг которого подключаются языковые расширения и внешние инструменты. Для Python основная связка — <b>VS Code + Python + Python extension + выбранный interpreter</b>. Для C++ к этому добавляется отдельный <b>compiler</b> и отладчик. Само расширение C/C++ компилятор не устанавливает.
+    </div>
+    <div class="guide-toc">
+      <a href="#vsc-interface">1. Интерфейс и проект</a>
+      <a href="#vsc-extensions">2. Расширения</a>
+      <a href="#vsc-python-start">3. Python: первый запуск</a>
+      <a href="#vsc-python-env">4. Python: окружения и pip</a>
+      <a href="#vsc-python-edit">5. Python: удобное редактирование</a>
+      <a href="#vsc-debug">6. Запуск и Debugger</a>
+      <a href="#vsc-cpp">7. C++: настройка</a>
+      <a href="#vsc-cpp-flow">8. C++: компиляция и запуск</a>
+      <a href="#vsc-terminal">9. Терминал и структура проекта</a>
+      <a href="#vsc-problems">10. Частые проблемы</a>
+      <a href="#vsc-workflow">11. Повседневный workflow</a>
+      <a href="#vsc-hotkeys">12. Горячие клавиши</a>
+    </div>
+  </div>
+
+  <div class="guide-grid guide-grid--full vscode-guide-grid">
+    <article id="vsc-interface" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">01</div>
+      <div>
+        <span class="guide-label">ОСНОВА</span>
+        <h3>Интерфейс VS Code и правильная работа с папками</h3>
+        <p>Главное отличие VS Code от Visual Studio в ежедневной работе состоит в том, что VS Code воспринимается прежде всего как <b>редактор с рабочей папкой</b>. Ты не обязан начинать с большого решения и шаблона проекта: обычно достаточно открыть папку, в которой находятся файлы программы.</p>
+
+        <div class="interface-grid">
+          <div><b>Explorer</b><span>Левая панель с файлами и папками рабочей области. Отсюда создают, открывают, переименовывают и перемещают файлы.</span></div>
+          <div><b>Editor</b><span>Центральная область, где пишется код. Можно открыть несколько файлов во вкладках и разделить окно редактора на несколько областей.</span></div>
+          <div><b>Search</b><span>Поиск не только в текущем файле, но и по всей открытой папке. Очень полезен, когда проект разрастается.</span></div>
+          <div><b>Run and Debug</b><span>Панель запуска и отладки. Здесь появляются конфигурации, кнопки запуска и инструменты для просмотра состояния программы.</span></div>
+          <div><b>Extensions</b><span>Каталог установленных и доступных расширений. Языковые возможности VS Code часто добавляются именно отсюда.</span></div>
+          <div><b>Source Control</b><span>Встроенный интерфейс Git. Он показывает изменённые файлы и позволяет выполнять базовые операции Git без постоянного переключения в терминал.</span></div>
+          <div><b>Terminal</b><span>Полноценный встроенный терминал. В нём можно запускать Python, pip, g++, git и другие команды так же, как в обычной консоли.</span></div>
+          <div><b>Status Bar</b><span>Нижняя строка состояния. Для Python здесь особенно важен выбранный интерпретатор; для C++ — информация о файле и контексте работы.</span></div>
+        </div>
+
+        <h4>Почему лучше открывать папку проекта</h4>
+        <p>Представь проект <code>calculator</code>:</p>
+        <div class="file-tree">
+          <div><span>📁 calculator</span></div>
+          <div class="file-tree__indent"><span>📄 main.py</span></div>
+          <div class="file-tree__indent"><span>📄 utils.py</span></div>
+          <div class="file-tree__indent"><span>📁 .venv</span></div>
+          <div class="file-tree__indent"><span>📄 README.md</span></div>
+        </div>
+        <p>Если открыть именно папку <code>calculator</code>, VS Code понимает её как workspace: поиск, терминал, Python environment, диагностика и конфигурации начинают работать в контексте этого проекта. Для Python документация VS Code отдельно отмечает, что выбранное окружение используется для IntelliSense, автодополнения, линтинга, форматирования, запуска и отладки.</p>
+
+        <div class="guide-two-columns">
+          <div>
+            <h4>Что делать каждый раз</h4>
+            <p><b>File → Open Folder</b> → выбрать папку проекта → открыть нужный <code>.py</code> или <code>.cpp</code> → проверить инструменты → писать код.</p>
+          </div>
+          <div>
+            <h4>Чего лучше не делать</h4>
+            <p>Не создавай десятки файлов в одной случайной папке «Загрузки». Для каждого отдельного проекта лучше иметь свою директорию с понятным названием.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="vsc-extensions" class="guide-card guide-section-card">
+      <div class="guide-card__number">02</div>
+      <span class="guide-label">РАСШИРЕНИЯ</span>
+      <h3>Что установить для Python и C++</h3>
+      <p>Открывай <b>Extensions</b> на боковой панели или нажимай <kbd>Ctrl + Shift + X</kbd>. Расширения добавляют языковую поддержку, IntelliSense, запуск, отладку и другие возможности.</p>
+
+      <div class="extension-grid">
+        <div class="extension-card extension-card--python">
+          <span class="extension-card__tag">PYTHON</span>
+          <h4>Python — Microsoft</h4>
+          <p>Основное расширение для Python. Оно добавляет интеграцию с интерпретаторами, запуск файлов, отладку, работу с окружениями и другие функции языка.</p>
+          <div class="extension-card__note">Pylance поставляется вместе с Python extension как язык поддержки Python и отвечает за IntelliSense, навигацию и диагностику.</div>
+        </div>
+        <div class="extension-card extension-card--debug">
+          <span class="extension-card__tag">PYTHON DEBUG</span>
+          <h4>Python Debugger</h4>
+          <p>Отдельный компонент для отладки Python. В актуальном VS Code он устанавливается вместе с Python extension, поэтому вручную искать его обычно не нужно.</p>
+          <div class="extension-card__note">Через Debugger можно ставить breakpoint, смотреть переменные и выполнять программу по шагам.</div>
+        </div>
+        <div class="extension-card extension-card--cpp">
+          <span class="extension-card__tag">C / C++</span>
+          <h4>C/C++ — Microsoft</h4>
+          <p>Добавляет подсветку синтаксиса, IntelliSense, диагностику и поддержку отладки C/C++.</p>
+          <div class="extension-card__note">Важно: расширение не содержит сам компилятор. Компилятор и отладчик должны быть установлены отдельно или уже присутствовать в системе.</div>
+        </div>
+      </div>
+
+      <div class="info-note"><b>Для Оли:</b> если основной язык — Python, начни с Python extension. C/C++ extension устанавливай только тогда, когда реально понадобится C++.</div>
+    </article>
+
+    <article id="vsc-python-start" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">03</div>
+      <div>
+        <span class="guide-label">PYTHON · СТАРТ</span>
+        <h3>Python: от пустой папки до запуска программы</h3>
+        <p>VS Code сам по себе не является интерпретатором Python. Для запуска кода на компьютере должен быть установлен <b>Python interpreter</b>, а расширение Python связывает этот интерпретатор с VS Code.</p>
+
+        <div class="guide-steps-row guide-steps-row--detailed">
+          <div><span>1</span><b>Открой папку</b><p>Через <b>File → Open Folder</b> открой отдельную папку проекта, например <code>python-lessons</code>.</p></div>
+          <div><span>2</span><b>Создай файл</b><p>В Explorer создай <code>main.py</code>. Расширение <code>.py</code> позволит VS Code распознать язык Python.</p></div>
+          <div><span>3</span><b>Выбери interpreter</b><p>Используй команду <b>Python: Select Interpreter</b> или нажми на выбранную версию Python в Status Bar.</p></div>
+          <div><span>4</span><b>Напиши код</b><p>Например, <code>print("Привет, Оля!")</code>. Если IntelliSense работает, VS Code будет помогать с синтаксисом и названиями.</p></div>
+          <div><span>5</span><b>Запусти</b><p>Используй кнопку запуска файла или команду <b>Python: Run Python File in Terminal</b>.</p></div>
+        </div>
+
+        <div class="code-demo"><span class="code-demo__title">main.py</span><pre><code>name = "Оля"
+print(f"Привет, {name}!")
+
+for i in range(3):
+    print(i)</code></pre></div>
+
+        <div class="guide-two-columns">
+          <div>
+            <h4>Если VS Code предлагает несколько Python</h4>
+            <p>Это нормально. На компьютере могут существовать системный Python, несколько версий Python и виртуальные окружения. Выбери тот interpreter, который относится к текущему проекту.</p>
+          </div>
+          <div>
+            <h4>Почему interpreter так важен</h4>
+            <p>Именно выбранное окружение определяет, где VS Code ищет Python и установленные пакеты, а также какой Python используется при запуске и отладке.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="vsc-python-env" class="guide-card guide-section-card">
+      <div class="guide-card__number">04</div>
+      <span class="guide-label">PYTHON · ОКРУЖЕНИЯ</span>
+      <h3>Virtual Environment и pip</h3>
+      <p>Когда проект использует библиотеки, удобнее держать их в отдельном виртуальном окружении. Тогда зависимости одного проекта не смешиваются с зависимостями другого.</p>
+
+      <h4>Создание окружения</h4>
+      <div class="code-demo"><pre><code>python -m venv .venv</code></pre></div>
+      <p>После выполнения команды в проекте появляется папка <code>.venv</code>. Саму папку обычно не редактируют вручную: это окружение с отдельным Python и установленными пакетами.</p>
+
+      <h4>Выбор окружения в VS Code</h4>
+      <p>После создания <code>.venv</code> выполни <b>Python: Select Interpreter</b> и выбери интерпретатор из этого окружения. VS Code умеет автоматически обнаруживать локальные virtual environments, включая <code>.venv</code> и <code>venv</code>.</p>
+
+      <h4>Установка библиотеки</h4>
+      <div class="code-demo"><pre><code>python -m pip install requests</code></pre></div>
+      <p>Формат <code>python -m pip</code> удобен тем, что запускает <code>pip</code> через тот Python, который вызван командой. Это помогает уменьшить путаницу, когда на компьютере установлено несколько Python.</p>
+
+      <h4>Проверка установленного пакета</h4>
+      <div class="code-demo"><pre><code>python -m pip show requests</code></pre></div>
+      <p>Если VS Code показывает ошибку <code>Import ... could not be resolved</code>, первым делом проверь, что пакет установлен именно в выбранном interpreter. Документация VS Code рекомендует в таких ситуациях проверить выбранное окружение и при необходимости установить пакет в него.</p>
+
+      <div class="info-note"><b>Простое правило:</b> открыл другой проект → проверь interpreter → затем устанавливай библиотеки. Очень много «магических» ошибок Python в VS Code на практике связано именно с тем, что код запускается другим Python, чем тот, куда ставились пакеты.</div>
+    </article>
+
+    <article id="vsc-python-edit" class="guide-card guide-section-card">
+      <div class="guide-card__number">05</div>
+      <span class="guide-label">PYTHON · РЕДАКТОР</span>
+      <h3>Что VS Code делает за тебя при написании Python</h3>
+      <p>После установки Python extension и выбора interpreter редактор становится значительно умнее обычного текстового редактора. Большая часть этих возможностей связана с IntelliSense и Pylance.</p>
+
+      <div class="feature-list feature-list--large">
+        <li><b>Автодополнение.</b> VS Code предлагает функции, методы, переменные и параметры по мере ввода.</li>
+        <li><b>Подсказка по параметрам.</b> При вызове функции редактор может показать её сигнатуру и типы.</li>
+        <li><b>Переход к определению.</b> Можно быстро перейти к месту, где объявлена функция, класс или переменная.</li>
+        <li><b>Ошибки прямо в коде.</b> Подозрительные места подчёркиваются, а в панели Problems можно увидеть диагностику.</li>
+        <li><b>Quick Fix.</b> Для части проблем появляется значок «лампочки» с вариантами исправления.</li>
+        <li><b>Переименование.</b> При структурированном проекте VS Code может помочь заменить имя символа по проекту.</li>
+        <li><b>Форматирование.</b> Код можно привести к единому стилю с помощью команды форматирования.</li>
+      </div>
+
+      <div class="info-note"><b>Важно:</b> подчёркивание не всегда означает, что программа точно не запустится. Это может быть предупреждение анализатора. Но если VS Code сообщает, что импорт не найден, сначала проверь выбранное окружение и наличие пакета.</div>
+    </article>
+
+    <article id="vsc-debug" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">06</div>
+      <div>
+        <span class="guide-label">RUN & DEBUG</span>
+        <h3>Запуск и Debugger: как перестать отлаживать код через бесконечные print()</h3>
+        <p>Debugger нужен тогда, когда тебе важно увидеть, <b>что происходит внутри программы в конкретный момент</b>. Вместо того чтобы добавлять десятки временных <code>print()</code>, можно остановить выполнение на нужной строке и посмотреть значения переменных.</p>
+
+        <div class="debug-timeline">
+          <div><span>1</span><b>Breakpoint</b><p>Нажми <kbd>F9</kbd> или кликни слева от строки. Это инструкция: «если выполнение дойдёт сюда — остановись».</p></div>
+          <div><span>2</span><b>Start Debugging</b><p>Нажми <kbd>F5</kbd> или запусти отладку из панели Run and Debug.</p></div>
+          <div><span>3</span><b>Посмотри состояние</b><p>Когда программа остановилась, смотри значения переменных, стек вызовов и текущую строку.</p></div>
+          <div><span>4</span><b>Шагай</b><p>Переходи по строкам и наблюдай, как меняется состояние программы.</p></div>
+          <div><span>5</span><b>Продолжай</b><p>Продолжи выполнение и посмотри, что происходит дальше.</p></div>
+        </div>
+
+        <div class="guide-two-columns">
+          <div>
+            <h4>Когда использовать F5</h4>
+            <p>Когда ты хочешь именно <b>исследовать программу</b>: выяснить, почему условие сработало, откуда взялось значение или в какой функции произошёл неожиданный результат.</p>
+          </div>
+          <div>
+            <h4>Когда достаточно обычного запуска</h4>
+            <p>Когда программа небольшая и ты уже понимаешь её поведение. Для быстрой проверки кода не обязательно каждый раз запускать полноценную отладочную сессию.</p>
+          </div>
+        </div>
+
+        <div class="code-demo"><span class="code-demo__title">Пример для отладки</span><pre><code>a = 10
+b = 0
+
+if b == 0:
+    result = "деление невозможно"
+else:
+    result = a / b
+
+print(result)</code></pre></div>
+        <p>Поставь breakpoint на строку <code>if b == 0:</code>, запусти отладку и посмотри, какое значение у <code>b</code>. Такой подход постепенно учит не просто «видеть ошибку», а понимать путь исполнения программы.</p>
+        <p>Для Python актуальная документация VS Code указывает, что Python Debugger позволяет ставить breakpoints, проверять переменные и пошагово выполнять код. Конфигурации отладки при необходимости сохраняются в <code>.vscode/launch.json</code>.</p>
+      </div>
+    </article>
+
+    <article id="vsc-cpp" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">07</div>
+      <div>
+        <span class="guide-label">C++ · НАСТРОЙКА</span>
+        <h3>C++ в VS Code: что нужно кроме расширения</h3>
+        <p>Здесь есть важный момент, который часто путают новички: <b>C/C++ extension — это не компилятор</b>. Расширение даёт VS Code поддержку языка, IntelliSense и интеграцию с отладкой, но сам C++-код должен компилироваться отдельным toolchain. На Windows это может быть, например, MSVC или MinGW.</p>
+
+        <div class="compare-strip">
+          <div><b>VS Code</b><span>Редактор и интерфейс разработки</span></div>
+          <div><b>C/C++ extension</b><span>Языковая поддержка, IntelliSense, диагностика, debug integration</span></div>
+          <div><b>Compiler</b><span>Превращает исходный код C++ в исполняемую программу</span></div>
+          <div><b>Debugger</b><span>Позволяет пошагово исследовать работающую программу</span></div>
+        </div>
+
+        <h4>Сначала проверяем, есть ли компилятор</h4>
+        <p>Открой <b>Terminal → New Terminal</b> и выполни:</p>
+        <div class="code-demo"><pre><code>g++ --version</code></pre></div>
+        <p>Если терминал показывает версию, значит команда <code>g++</code> доступна через системный <code>PATH</code>. Если система пишет, что команда не найдена, расширение C/C++ само по себе эту проблему не исправит: сначала нужно установить или подключить toolchain.</p>
+
+        <div class="info-note"><b>Практический совет:</b> если C++ нужен только иногда, не запутывайся в десятке расширений. Достаточно понять три сущности: <b>VS Code → C/C++ extension → compiler/debugger</b>.</div>
+      </div>
+    </article>
+
+    <article id="vsc-cpp-flow" class="guide-card guide-section-card">
+      <div class="guide-card__number">08</div>
+      <span class="guide-label">C++ · РАБОТА</span>
+      <h3>C++: написать → собрать → запустить → отладить</h3>
+      <p>После того как <code>g++</code> доступен, базовый цикл работы можно выполнять прямо из встроенного терминала.</p>
+
+      <h4>1. Создай файл</h4>
+      <p>Например, <code>main.cpp</code>:</p>
+      <div class="code-demo"><pre><code>#include &lt;iostream&gt;
+
+int main() {
+    int a = 5;
+    int b = 7;
+    std::cout &lt;&lt; a + b &lt;&lt; '\\n';
+    return 0;
+}</code></pre></div>
+
+      <h4>2. Скомпилируй</h4>
+      <div class="code-demo"><pre><code>g++ main.cpp -o main</code></pre></div>
+      <p>Здесь <code>main.cpp</code> — исходный файл, а <code>-o main</code> говорит компилятору, как назвать выходной файл.</p>
+
+      <h4>3. Запусти</h4>
+      <div class="code-demo"><pre><code>main.exe</code></pre></div>
+      <p>В Windows это типичный вариант, когда получился исполняемый файл <code>main.exe</code>.</p>
+
+      <h4>4. Отлаживай</h4>
+      <p>Для полноценного F5/debug workflow VS Code может использовать файл <code>.vscode/launch.json</code>. В зависимости от выбранного toolchain конфигурация отладки отличается. Например, для MinGW документация Microsoft показывает конфигурацию с <code>g++.exe</code> и при необходимости настройкой пути к <code>gdb.exe</code>.</p>
+
+      <div class="guide-two-columns">
+        <div>
+          <h4>Когда достаточно терминала</h4>
+          <p>Для простых университетских задач: одна программа, один файл, компиляция одной командой. Это часто самый прозрачный способ понять, что именно происходит.</p>
+        </div>
+        <div>
+          <h4>Когда удобнее Run and Debug</h4>
+          <p>Когда появляются несколько файлов, breakpoint, сложные вызовы функций и необходимость наблюдать значения переменных.</p>
+        </div>
+      </div>
+    </article>
+
+    <article id="vsc-terminal" class="guide-card guide-section-card">
+      <div class="guide-card__number">09</div>
+      <span class="guide-label">ТЕРМИНАЛ</span>
+      <h3>Встроенный терминал: твой главный инструмент рядом с кодом</h3>
+      <p>VS Code содержит полноценный integrated terminal. Он стартует в контексте рабочей папки и умеет выполнять те же команды, что и обычный терминал. Открыть его можно через <b>Terminal → New Terminal</b> или сочетание <kbd>Ctrl + `</kbd>.</p>
+
+      <div class="terminal-cheatsheet">
+        <div><kbd>Ctrl + `</kbd><span>показать или скрыть терминал</span></div>
+        <div><kbd>Ctrl + Shift + `</kbd><span>создать новый терминал</span></div>
+        <div><kbd>pwd</kbd><span>посмотреть текущую папку в Bash/Unix-подобном терминале</span></div>
+        <div><kbd>cd папка</kbd><span>перейти в другую директорию</span></div>
+        <div><kbd>python main.py</kbd><span>запустить Python-файл</span></div>
+        <div><kbd>g++ main.cpp -o main</kbd><span>скомпилировать C++-файл</span></div>
+      </div>
+
+      <h4>Как понять, где ты находишься</h4>
+      <p>Если терминал неожиданно говорит, что файл не найден, часто проблема не в коде, а в текущей папке. Проверь путь к файлу в Explorer и сравни его с текущей директорией терминала.</p>
+
+      <h4>Терминал и Git Bash</h4>
+      <p>Поскольку на сайте уже есть отдельный справочник по Git Bash, удобно воспринимать встроенный терминал VS Code как место, где можно применять эти команды прямо рядом с проектом. Сам VS Code не меняет правила Git Bash: он просто предоставляет оболочке встроенное окно.</p>
+    </article>
+
+    <article id="vsc-problems" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">10</div>
+      <div>
+        <span class="guide-label">ДИАГНОСТИКА</span>
+        <h3>Частые проблемы и понятный алгоритм поиска причины</h3>
+        <p>Не пытайся сразу переустанавливать VS Code. Сначала пойми, <b>какой слой системы сломан</b>: сам редактор, расширение, interpreter/compiler, путь или код.</p>
+
+        <div class="error-table">
+          <div class="error-row error-row--head"><span>Симптом</span><span>Вероятная причина</span><span>Что проверить сначала</span></div>
+          <div class="error-row"><span>Python не запускается</span><span>Не выбран interpreter или Python недоступен</span><span><b>Python: Select Interpreter</b>, затем <code>python --version</code> в терминале</span></div>
+          <div class="error-row"><span>Импорт подсвечен красным</span><span>Пакет установлен в другом окружении или не установлен</span><span>Проверь выбранный interpreter и выполни <code>python -m pip show пакет</code></span></div>
+          <div class="error-row"><span>g++ не найден</span><span>Компилятор не установлен или не попал в PATH</span><span><code>g++ --version</code>; затем проверь toolchain и PATH</span></div>
+          <div class="error-row"><span>F5 не понимает, что запускать</span><span>Нет подходящей debug-конфигурации</span><span>Открой Run and Debug и посмотри, какую конфигурацию предлагает VS Code</span></div>
+          <div class="error-row"><span>Программа работает не так</span><span>Ошибка логики, а не среды</span><span>Поставь breakpoint и проверь значения переменных по шагам</span></div>
+          <div class="error-row"><span>Терминал показывает другой путь</span><span>Терминал открыт не в папке проекта</span><span>Проверь текущую директорию и открытые workspace folders</span></div>
+        </div>
+
+        <div class="debug-checklist">
+          <div><span>01</span><b>Сначала проверь код</b><p>Есть ли синтаксическая ошибка? Правильно ли имя файла? Не пропущен ли импорт?</p></div>
+          <div><span>02</span><b>Потом проверь инструмент</b><p>Какой Python выбран? Есть ли <code>g++</code>? Установлено ли нужное расширение?</p></div>
+          <div><span>03</span><b>Потом проверь путь</b><p>В той ли папке ты находишься? Тот ли файл запускаешь?</p></div>
+          <div><span>04</span><b>Только потом переустанавливай</b><p>Переустановка — последнее средство, а не первый шаг диагностики.</p></div>
+        </div>
+      </div>
+    </article>
+
+    <article id="vsc-workflow" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">11</div>
+      <div>
+        <span class="guide-label">WORKFLOW</span>
+        <h3>Как реально работать в VS Code каждый день</h3>
+        <div class="workflow-grid workflow-grid--vscode">
+          <div><strong>01</strong><b>Открой папку проекта</b><span>Не начинай работу с отдельного файла, если у тебя уже есть структура проекта.</span></div>
+          <div><strong>02</strong><b>Проверь инструмент</b><span>Python: выбран interpreter. C++: доступен compiler.</span></div>
+          <div><strong>03</strong><b>Пиши небольшой кусок</b><span>Не набирай всю программу на 300 строк, не проверяя промежуточный результат.</span></div>
+          <div><strong>04</strong><b>Запускай часто</b><span>Ошибку на двух строках легче найти, чем ошибку после часа непрерывной работы.</span></div>
+          <div><strong>05</strong><b>Используй Debugger</b><span>Если программа делает не то — смотри значения, а не только перечитывай код.</span></div>
+          <div><strong>06</strong><b>Читай Problems</b><span>Смотри не только на красное подчёркивание, но и на точный текст сообщения.</span></div>
+          <div><strong>07</strong><b>Форматируй код</b><span>Единый стиль уменьшает количество визуальных ошибок и облегчает чтение.</span></div>
+          <div><strong>08</strong><b>Сохраняй проект аккуратно</b><span>Одна задача — одна понятная папка. Не складывай всё в один каталог.</span></div>
+        </div>
+        <div class="info-note"><b>Хорошая привычка:</b> когда что-то не работает, не начинай хаотично нажимать кнопки. Сначала сформулируй симптом одной фразой — например, «Python запускается другим interpreter». После этого уже проверяй конкретный слой системы.</div>
+      </div>
+    </article>
+
+    <article id="vsc-hotkeys" class="guide-card guide-card--wide guide-section-card">
+      <div class="guide-card__number">12</div>
+      <div>
+        <span class="guide-label">ШПАРГАЛКА</span>
+        <h3>Горячие клавиши, которые действительно стоит выучить</h3>
+        <p>Не нужно запоминать десятки сочетаний. Сначала выучи те, которые сокращают самые частые действия: открыть файл, открыть терминал, поиск, запуск и отладка.</p>
+        <div class="hotkeys hotkeys--large">
+          <div><kbd>Ctrl + Shift + P</kbd><span>Command Palette</span></div>
+          <div><kbd>Ctrl + P</kbd><span>Быстро открыть файл</span></div>
+          <div><kbd>Ctrl + Shift + E</kbd><span>Explorer</span></div>
+          <div><kbd>Ctrl + Shift + F</kbd><span>Поиск по проекту</span></div>
+          <div><kbd>Ctrl + Shift + X</kbd><span>Extensions</span></div>
+          <div><kbd>Ctrl + Shift + G</kbd><span>Source Control</span></div>
+          <div><kbd>Ctrl + Shift + D</kbd><span>Run and Debug</span></div>
+          <div><kbd>Ctrl + `</kbd><span>Встроенный терминал</span></div>
+          <div><kbd>Ctrl + S</kbd><span>Сохранить файл</span></div>
+          <div><kbd>Ctrl + Shift + S</kbd><span>Сохранить как</span></div>
+          <div><kbd>Shift + Alt + F</kbd><span>Форматировать документ</span></div>
+          <div><kbd>F5</kbd><span>Запуск отладки</span></div>
+          <div><kbd>Ctrl + F5</kbd><span>Запуск без отладки</span></div>
+          <div><kbd>F9</kbd><span>Breakpoint</span></div>
+          <div><kbd>F10</kbd><span>Следующий шаг</span></div>
+          <div><kbd>F11</kbd><span>Шаг внутрь функции</span></div>
+        </div>
+        <p class="guide-source">Сочетания и базовое назначение интерфейсных команд сверены с актуальной документацией Microsoft VS Code.</p>
+      </div>
+    </article>
+  </div>
+</section>
+    </main>
+
+    <footer class="footer">
+      <span>Developer Toolkit</span>
+      <span>HTML · CSS · JavaScript</span>
+    </footer>
+  </div>
+
+</body>
+</html>
