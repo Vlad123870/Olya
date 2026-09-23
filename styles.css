@@ -1600,7 +1600,11 @@ input[type="search"]::-webkit-search-cancel-button {
 .math-hero{background:radial-gradient(circle at 86% 18%,rgba(110,231,183,.12),transparent 20rem),radial-gradient(circle at 10% 70%,rgba(102,126,234,.08),transparent 18rem),linear-gradient(180deg,rgba(22,33,45,.94),rgba(17,25,35,.98));}
 .linear-hero{background:radial-gradient(circle at 86% 18%,rgba(110,231,183,.11),transparent 20rem),radial-gradient(circle at 12% 78%,rgba(90,120,255,.08),transparent 18rem),linear-gradient(180deg,rgba(22,33,45,.94),rgba(17,25,35,.98));}
 .math-guide-grid,.linear-guide-grid{margin-top:0;}
-.formula-box{margin:14px 0;padding:14px 16px;overflow-x:auto;border:1px solid #2b3c4c;border-radius:12px;background:#0a131b;color:#e8f8f2;}
+.formula-box{margin:14px 0;padding:16px 18px;overflow-x:auto;overflow-y:hidden;border:1px solid #2b3c4c;border-radius:12px;background:#0a131b;color:#eef8f4;font-size:1.08rem;line-height:1.7;-webkit-overflow-scrolling:touch;}
+.formula-box mjx-container{margin:0 !important;color:inherit !important;max-width:none;}
+.formula-box mjx-container[display="true"]{margin:.15em 0 !important;}
+.theorem-box mjx-container{color:inherit !important;}
+.textbook-chapter p mjx-container{font-size:1em;}
 .formula-grid,.formula-table,.theorem-grid,.method-grid,.book-grid{display:grid;gap:10px;margin-top:15px;}
 .formula-grid,.formula-table{grid-template-columns:repeat(2,minmax(0,1fr));}
 .formula-table>div,.theorem-grid>div,.method-grid>div,.book-grid>div{padding:14px;border:1px solid #2b3c4c;border-radius:12px;background:#0c141c;}

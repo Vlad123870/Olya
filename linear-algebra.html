@@ -10,12 +10,30 @@
 window.MathJax = {
   tex: {
     inlineMath: [['\\(','\\)']],
-    displayMath: [['\\[','\\]']]
+    displayMath: [['\\[','\\]']],
+    packages: {'[+]':['ams']}
   },
-  svg: { fontCache: 'global' }
+  chtml: { fontURL: 'mathjax/output/chtml/fonts/woff-v2' }
 };
+(function () {
+  var CDN = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/';
+  function load(src, onError) {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = src;
+    s.onerror = onError;
+    document.head.appendChild(s);
+  }
+  // 1) local copy (works offline if the mathjax/ folder exists)
+  load('mathjax/tex-chtml.js', function () {
+    // 2) fallback: CDN, fonts must come from the CDN too
+    window.MathJax.chtml.fontURL = CDN + 'output/chtml/fonts/woff-v2';
+    load(CDN + 'tex-chtml.js', function () {
+      console.error('MathJax could not be loaded (neither local nor CDN).');
+    });
+  });
+})();
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 <div class="page">
@@ -43,7 +61,7 @@ window.MathJax = {
 <p>Нулевой вектор имеет длину ноль и не имеет определённого направления. Для ненулевого вектора нормированный вектор \(e=a/\|a\|\) имеет единичную длину и сохраняет направление a.</p>
 <h4>1.4. Линейные комбинации</h4>
 <p>Выражение \(\alpha_1v_1+\cdots+\alpha_kv_k\) называется линейной комбинацией данных векторов. Геометрически это последовательность масштабирований и сложений. Именно линейные комбинации приводят нас к линейной оболочке, базису и размерности.</p>
-<div class="theorem-box"><b>Параллельность.</b> Ненулевые векторы a и b параллельны тогда и только тогда, когда существует число \(\lambda\), такое что \(a=\lambda b\). Если \(\lambda>0\), направления совпадают; если \(\lambda<0\), противоположны.</div>
+<div class="theorem-box"><b>Параллельность.</b> Ненулевые векторы a и b параллельны тогда и только тогда, когда существует число \(\lambda\), такое что \(a=\lambda b\). Если \(\lambda>0\), направления совпадают; если \(\lambda&lt;0\), противоположны.</div>
 <h4>1.5. Координаты в другом базисе</h4>
 <p>Координаты не являются «частью» самого вектора. Если заменить базис, коэффициенты разложения изменятся. Например, один и тот же вектор плоскости может иметь разные пары координат в стандартном и наклонном базисах. Это станет главным механизмом всей дальнейшей линейной алгебры.</p>
 <div class="example-box"><b>Пример.</b> Если \(A=(1,2)\), \(B=(4,6)\), то \(\vec{AB}=(3,4)\), а \(\|\vec{AB}\|=5\). Длина отрезка AB совпадает с длиной соответствующего свободного вектора.</div>
@@ -310,7 +328,7 @@ window.MathJax = {
 <p>Ортогональная проекция минимизирует расстояние до прямой, заданной направлением u. Эта идея лежит в основе метода наименьших квадратов.</p>
 <h4>16.5. Процесс Грамма—Шмидта</h4>
 <p>Начинаем с независимых векторов \(v_1,\ldots,v_n\). Строим:</p>
-<div class="formula-box">\[u_1=v_1,\qquad u_k=v_k-\sum_{j<k}\frac{(v_k,u_j)}{(u_j,u_j)}u_j.\]</div>
+<div class="formula-box">\[u_1=v_1,\qquad u_k=v_k-\sum_{j&lt;k}\frac{(v_k,u_j)}{(u_j,u_j)}u_j.\]</div>
 <p>Получаем попарно ортогональную систему. Нормировка \(e_k=u_k/\|u_k\|\) даёт ортонормированный базис.</p>
 <div class="example-box"><b>Смысл Грамма—Шмидта.</b> На каждом шаге из нового направления убирается всё, что уже лежит в предыдущих направлениях. Остаётся только genuinely новое направление.</div>
 <div class="chapter-check"><b>После главы:</b> перескажи определения своими словами, выпиши ключевые теоремы и реши минимум 3 задачи: одну базовую, одну вычислительную и одну на выбор метода.</div></div></article><article id="la17" class="textbook-chapter guide-card guide-card--wide"><div class="guide-card__number">17</div><div><span class="guide-label">ЕВКЛИДОВЫ ОПЕРАТОРЫ</span><h2>Ортогональные операторы, проекции и метод наименьших квадратов</h2>
